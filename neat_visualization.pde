@@ -15,7 +15,8 @@ float rrr = 0;
 
 color define_color[];
 void setup(){
-  myClient = new Client(this, "127.0.0.1", 12345); 
+  myClient = new Client(this, "127.0.0.1", 12345);
+  //checkSocketConnection();
   //fullScreen(P3D); 
   size(800,800,P3D);
   smooth(8);
@@ -31,6 +32,11 @@ void setup(){
   define_color[2] = #BDB491;
   define_color[3] = #8D7F47;
   define_color[4] = #7B8A74;
+  define_color[5] = #CDC0B0;
+  define_color[6] = #EEE0E5;
+  define_color[7] = #BCD2EE;
+  define_color[8] = #AEEEEE;
+  define_color[9] = #FFA07A;
 
   
   init();
@@ -50,6 +56,8 @@ void draw(){
   }
   pattarn_rotate_count = 0;
   
+  //checkSocketConnection();
+  
   String r = "refresh\n";
   if(myClient.available() > 0 ){
     dataIn = myClient.readStringUntil(10);
@@ -66,4 +74,14 @@ void init(){
      pattarn_size += species_list.get(i).get_total_node_size();
      species_list.get(i).set_color( define_color[i]);
   }
+}
+
+void checkSocketConnection(){
+  
+  while( !myClient.active() ){
+    println("fail connect");
+    println("reconnecting...");
+    myClient = new Client(this, "127.0.0.1", 12345);
+  }
+  
 }

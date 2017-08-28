@@ -52,8 +52,9 @@ class NodeGene{
   }
   
   void display( int p_size ){
-    
-    end_position = PVector.lerp(end_position , target_position ,0.1 );
+    float s = random( 5 , 10);
+    //end_position = PVector.lerp(end_position , PVector.mult(target_position , s) ,0.1 );
+    end_position = PVector.lerp(end_position , target_position,0.1 );
     float tempx = 0 , tempy = 0;
     if(bias != 3.5){
       float xoff = 0;
@@ -85,8 +86,9 @@ class NodeGene{
     pushStyle();
     
     noFill();
-    strokeWeight(7);
-    point(tempx ,tempy);
+    strokeWeight(s);
+    if( tempx != 0 && tempy !=0)
+      point(tempx ,tempy);
     popStyle();
     textSize(8);
     text(bias , end_position.x *1.2, end_position.y *1.2);
@@ -124,7 +126,6 @@ class ConnectionGene{
   }
   
   void update( float t_weight){
-    println("update con" + target_weight + " , " + weight);
     is_register = true;
     this.target_weight = t_weight;
     
@@ -132,7 +133,7 @@ class ConnectionGene{
   
   void display(int p_size){
 
-    strokeWeight( weight);
+    strokeWeight( weight * 3);
     if(start_position.x != 0)
       point( start_position.x , start_position.y);
 
