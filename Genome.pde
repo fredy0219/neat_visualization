@@ -34,16 +34,18 @@ class Genome{
     
     
     for (Object key : node_gene.keySet()) {
-     pattarn_rotate_count++;
-     pushMatrix();
-     rotateZ(pattarn_rotate_count / p_size * TWO_PI);
-     int gk = Integer.parseInt(key.toString());
-     PVector start = new PVector(50,0);
-     node_gene.get(gk).setPosition(start);
-     node_gene.get(gk).display(p_size);
-     popMatrix();
-     PVector start_to_connection = new PVector(50*cos(pattarn_rotate_count / p_size * TWO_PI) , 50*sin(pattarn_rotate_count / p_size * TWO_PI));
-     node_gene.get(gk).setPosition(start_to_connection);  
+      
+      int gk = Integer.parseInt(key.toString());
+      PVector start = new PVector(100,0);
+      pattarn_rotate_count++;
+      pushMatrix();
+        
+        rotateZ(pattarn_rotate_count / p_size * TWO_PI);
+        node_gene.get(gk).setPosition(start);
+        node_gene.get(gk).display();
+      popMatrix();
+      PVector start_to_connection = new PVector(100*cos(pattarn_rotate_count / p_size * TWO_PI) , 100*sin(pattarn_rotate_count / p_size * TWO_PI));
+      node_gene.get(gk).setPosition(start_to_connection);  
     }
     
     
